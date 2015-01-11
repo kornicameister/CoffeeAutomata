@@ -1,0 +1,47 @@
+<html lang="pl" ng-app="coffeeAutomated">
+
+<head>
+    <title>CoffeeAutomated</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="lib/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="lib/bootstrap/bootstrap-theme.css">
+</head>
+<body>
+
+<section class="container-fluid">
+    <div class="panel panel-danger" ng-if="ui.error">
+        <header class="panel-heading">
+            Error captured
+        </header>
+        <div class="panel-body">
+            {{ui.error.msg}}
+            <button class="btn btn-danger" ng-click="ui.error.click()"><i class="glyphicon glyphicon-ok-sign"></i>
+            </button>
+        </div>
+    </div>
+</section>
+<section class="container-fluid">
+    <div ui-view></div>
+</section>
+<section class="container-fluid">
+    <div class="panel panel-info" ng-if="ui.msg">
+        {{ui.msg.msg}}
+        <button class="btn btn-primary" ng-click="ui.msg.click()">
+            <i class="glyphicon glyphicon-ok-sign"></i>
+        </button>
+    </div>
+</section>
+
+</body>
+<script type="text/javascript" src="lib/jquery.min.js"></script>
+<script type="text/javascript" src="lib/arbor/arbor.js"></script>
+<script type="text/javascript" src="lib/arbor/arbor-tween.js"></script>
+<script type="text/javascript" src="lib/arbor/arbor-graphics.js"></script>
+<script type="text/javascript" src="lib/bootstrap/bootstrap.min.js"></script>
+<script type="text/javascript" src="lib/lodash.js"></script>
+<script type="text/javascript" src="lib/angular/angular.js"></script>
+<script type="text/javascript" src="lib/angular/angular-locale_pl.js"></script>
+<script type="text/javascript" src="lib/angular/angular-ui-router.js"></script>
+<script type="text/javascript" src="app.js"></script>
+</html>

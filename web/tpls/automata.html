@@ -1,0 +1,62 @@
+<div class="col-lg-10 panel panel-success">
+    <header class="panel-heading">Automata</header>
+    <div class="panel-body">
+        <div class="container-fluid">
+            <div class="col-lg-2">
+                <div class="list-group">
+                    <div class="list-group-item">
+                        Price: {{paymenentStatus.price}}
+                    </div>
+                    <div class="list-group-item">
+                        Paid: {{paymenentStatus.paid}}
+                    </div>
+                    <div class="list-group-item">
+                        Change: {{paymenentStatus.change}}
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <canvas id="graphViewport" width="800" height="400"></canvas>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="col-lg-5">
+                <div class="list-group">
+                    <div class="list-group-item list-group-item-info">
+                        <h4 class="list-group-item-heading">State</h4>
+
+                        <p class="list-group-item-text">
+                            {{graph.state.activeState}} => {{graph.state.routing}}
+                        </p>
+                    </div>
+                    <div class="list-group-item list-group-item-info" ng-show="selectiveRoutes.length">
+                        <h4 class="list-group-item-heading">Transition to</h4>
+
+                        <p class="list-group-item-text">
+                            <select ng-options="item.label for item in selectiveRoutes"
+                                    ng-model="selectedRoute"></select>
+                        </p>
+                    </div>
+                    <div class="list-group-item list-group-item-info" ng-show="graph.state.activeState === 'PUT_COIN'">
+                        <h4 class="list-group-item-heading">Pick a coin</h4>
+
+                        <p class="list-group-item-text">
+                            <select ng-options="item.label for item in settings.denominations"
+                                    ng-model="pickedCoin"></select>
+                            <button class="btn btn-primary" ng-click="actions.putCoin(pickedCoin)">Put</button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 col-lg-offset-5">
+                <ul class="text-info" style="font-size: smaller">
+                    <li ng-repeat="vs in visitedNodes">
+                        {{vs.from}} => {{vs.to}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <button type="reset" class="btn btn-danger" ng-click="actions.cancel()">Cancel</button>
+
+</div>

@@ -1,0 +1,80 @@
+<div class="col-lg-5 panel panel-primary">
+    <header class="panel-heading">Configuration</header>
+    <div class="panel-body">
+        <form class="form-horizontal clearfix" novalidate>
+            <div class="form-group">
+                <label for="semiAuto" class="col-sm-2 control-label">SemiAuto</label>
+
+                <div class="col-sm-10">
+                    <input ng-model="settings.semiAuto"
+                           ng-required
+                           type="checkbox"
+                           class="form-control"
+                           id="semiAuto">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="coffePrice" class="col-sm-2 control-label">Coffee price</label>
+
+                <div class="col-sm-10">
+                    <input ng-model="settings.coffeePrice"
+                           min="0"
+                           ng-required
+                           type="number"
+                           class="form-control"
+                           id="coffePrice"
+                           placeholder="Enter coffee price">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">
+                    Denominations <i class="glyphicon glyphicon-plus-sign"
+                                     ng-click="denominationsAddVisible=true"></i>
+                </label>
+
+                <div class="col-sm-10">
+
+                    <table class="table table-hover" ng-show="!denominationsAddVisible">
+                        <thead>
+                        <tr>
+                            <th><a href="" ng-click="predicate = 'value'; reverse=!reverse">Value</a></th>
+                            <th><a href="" ng-click="predicate = 'label'; reverse=!reverse">Label</a></th>
+                            <th>Delete?</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="ds in denominations | orderBy:predicate:reverse">
+                            <td>{{ds.value}}</td>
+                            <td>{{ds.label}}</td>
+                            <td>
+                                <i class="glyphicon glyphicon-minus-sign" ng-click="deleteDenomination(ds)"></i>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <div class="col-sm-10" ng-show="denominationsAddVisible">
+                    <p style="display: inline-flex">
+                        <input type="number"
+                               class="form-control"
+                               id="newDS"
+                               ng-required
+                               min="0"
+                               placeholder="Enter denomination">
+                        <button type="submit" class="btn btn-default" ng-click="saveDenomination()">
+                            <i class="glyphicon glyphicon-plus-sign"></i>
+                        </button>
+                    </p>
+                </div>
+
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-default" ng-click="save(settings)">Save</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
